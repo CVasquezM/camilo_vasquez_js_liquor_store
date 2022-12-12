@@ -1,6 +1,11 @@
-// Checking age //
+        
+        //Variables//
+let date = new Date();
+let current_date; 
+let user_year;
+let user_age;
+const allowed_age = 18;
 let age;
-let allowed_age;
 let terms_conditions;
 let alcohol;
 let side;
@@ -13,32 +18,69 @@ let costo_soda = 15;
 let costo_coca = 10;
 let costo_hielo = "1 kg de hielo de cortesía";
 let costo_kit = 35;
+let carrito = [];
 
+
+//Objetos//
+function Alcoholes(nombre, precio, acompañante, disponibilidad){
+    this.nombre = nombre;
+    this.precio = precio;
+    this.acompañante = acompañante;
+    this.disponibilidad = disponibilidad;
+}
+
+function Sides(nombre, precio, disponibilidad){
+    this.nombre = nombre;
+    this.precio = precio;
+    this.disponibilidad = disponibilidad;
+}
+
+let ginebra = new Alcoholes("Ginebra Tanqueray", `$${costo_ginebra}`, "Tónica Fever Tree o soda", true);
+let whiskey = new Alcoholes("Whiskey Macallan 12 años", `$${costo_whiskey}`, "Solo o con hielo", true);
+let ron = new Alcoholes("Ron Xacapa XD", `$${costo_ron}`, "Coca Cola o soda", true);
+let tequila = new Alcoholes("Tequila José Cuervo Reserva de la Familia", `$${costo_tequila}`, "Con hielo o kit mexicano", true);
+
+let tonica = new Sides("Tónica Fever Tree", `$${costo_tonica}`, true);
+let cocacola = new Sides("Coca Cola normal", `$${costo_coca}`, true);
+let hielo = new Sides("Hielo Iglú", `$${costo_hielo}`, true);
+let kit = new Sides("Kit Mexicano: naranja y sal de gusano", `$${costo_kit}`, true);
+
+let arrayAlcoholes = [ginebra, whiskey, ron, tequila];
+let arraySides = [tonica, cocacola, hielo, kit];
+
+
+
+        //Inicio//
 
 alert("Te damos la bienvenida a Shakin' at home, un lugar para vivir la experiencia de la coctelería en casa. Para continuar debemos confirmar que estés autorizado para comprar bebidas alcohólicas.");
 
-age = parseInt(prompt("Ingresa el año en que naciste"));
-allowed_age = 2022 - age;
+// Checking age //
+age_calculator();
 
-if (allowed_age >= 18) {
-    age = true;
-    if (age = true){
-        terms_conditions = prompt("¿Estás de acuerdo con nuestros términos y condiciones? Si/No")
+function age_calculator(){
+    current_date = date.getFullYear();
+    user_year = parseInt(prompt("Ingresa el año en que naciste"));
+    user_age = current_date - user_year;
+    if (user_age >= allowed_age){
+        age = true;
+        if (age = true){
+            terms_conditions = prompt("¿Estás de acuerdo con nuestros términos y condiciones? Si/No").toLowerCase();
+        }
+        if (terms_conditions == "si" || terms_conditions == "sí") {
+            terms_conditions = true;
+            }
+        if (age == true && terms_conditions == true){
+            choosing_alcohol();         //Function//
+            }
+        else {
+            alert("Para hacer uso de nuestro sistema, debes aceptar y cumplir con los términos y condiciones"); 
+            }
     }
-    if (terms_conditions.toLowerCase() == "si" || terms_conditions.toLowerCase() == "sí") {
-        terms_conditions = true;
-        }
-    if (age == true && terms_conditions == true){
-        choosing_alcohol();         //Function//
-        }
+    
     else {
-        alert("Para hacer uso de nuestro sistema, debes aceptar y cumplir con los términos y condiciones"); 
+        alert("Para hacer uso de nuestro sistema, debes ser mayor de edad"); 
         }
 }
-
-else {
-    alert("Para hacer uso de nuestro sistema, debes ser mayor de edad"); 
-    }
 
 // Choosing alcohol/liqueur //
 
@@ -110,4 +152,4 @@ function choosing_alcohol() {
     }
 }
 
-
+*/
