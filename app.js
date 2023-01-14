@@ -7,7 +7,6 @@ let user_age;
 const allowed_age = 18;
 let age;
 let terms_conditions;
-let alcohol;
 let side;
 let costo_ginebra = 100;
 let costo_ron = 130;
@@ -22,33 +21,12 @@ let carrito = [];
 
 
 //Objetos//
-function Alcoholes(nombre, precio, acompañante, disponibilidad){
-    this.nombre = nombre;
-    this.precio = precio;
-    this.acompañante = acompañante;
-    this.disponibilidad = disponibilidad;
-}
-
-function Sides(nombre, precio, disponibilidad){
-    this.nombre = nombre;
-    this.precio = precio;
-    this.disponibilidad = disponibilidad;
-}
-
-let ginebra = new Alcoholes("Ginebra Tanqueray", `$${costo_ginebra}`, "Tónica Fever Tree o soda", true);
-let whiskey = new Alcoholes("Whiskey Macallan 12 años", `$${costo_whiskey}`, "Solo o con hielo", true);
-let ron = new Alcoholes("Ron Xacapa XD", `$${costo_ron}`, "Coca Cola o soda", true);
-let tequila = new Alcoholes("Tequila José Cuervo Reserva de la Familia", `$${costo_tequila}`, "Con hielo o kit mexicano", true);
-
-let tonica = new Sides("Tónica Fever Tree", `$${costo_tonica}`, true);
-let cocacola = new Sides("Coca Cola normal", `$${costo_coca}`, true);
-let hielo = new Sides("Hielo Iglú", `$${costo_hielo}`, true);
-let kit = new Sides("Kit Mexicano: naranja y sal de gusano", `$${costo_kit}`, true);
-
-let arrayAlcoholes = [ginebra, whiskey, ron, tequila];
-let arraySides = [tonica, cocacola, hielo, kit];
-
-
+const Alcoholes = [
+    {nombre: "Ginebra Tanqueray 10", precio: costo_ginebra},
+    {nombre: "Whiskey Macallan", precio: costo_whiskey},
+    {nombre: "Ron Zacapa Centenario", precio: costo_ron},
+    {nombre: "Tequila José Cuervo Reserva de la Familia", precio: costo_tequila},
+]
 
         //Inicio//
 
@@ -85,7 +63,12 @@ function age_calculator(){
 // Choosing alcohol/liqueur //
 
 function choosing_alcohol() {
-    alcohol = prompt("¿Qué alcohol quieres llevar hoy? Escribe solo el nombre del licor, sin la marca: Ginebra Tranqueray ($100). Ron Xacapa ($130). Whiskey Macallan ($250). Tequila Jose Cuervo Reserva de la Familia ($400)");
+    let productos = Alcoholes.map((licor) => licor.nombre + " $" + licor.precio);
+    prompt("¿Qué alcohol quieres llevar hoy? " + productos.join(" - "));
+
+}
+
+    /*
     
     if(alcohol.toLowerCase() == "ginebra"){
         console.log(`Ginebra Tanqueray $${costo_ginebra}`);
